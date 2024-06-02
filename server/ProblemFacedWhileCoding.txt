@@ -1,0 +1,51 @@
+1) 10/05/2024(17:57) -
+
+There was just a error, In Express.js, the order of parameters for middleware 
+functions should be (req, res, next). However, in your ErrorMiddleWare function, you have (err, res, req, next).
+
+export const ErrorMiddleWare = (err, res, req, next) => {
+    err.message = err.message || "Internal Server Error";
+    err.statuscode = err.statuscode || 500;
+
+    if(err.name === "CastError"){
+        const message = `Resource not found. Invalid: ${err.path}`;
+        err = new ErrorHandler(message, 400);
+    }
+
+    return res.status(err.statuscode).json({
+        success: false,
+        message: err.message
+    });
+};
+
+
+
+export const ErrorMiddleWare = (err, req, res, next) => {
+    err.message = err.message || "Internal Server Error";
+    err.statuscode = err.statuscode || 500;
+
+    if(err.name === "CastError"){
+        const message = `Resource not found. Invalid: ${err.path}`;
+        err = new ErrorHandler(message, 400);
+    }
+
+    return res.status(err.statuscode).json({
+        success: false,
+        message: err.message
+    });
+};
+
+Changing the sequence solved the problem.
+
+2)10/05/2024 18:35
+
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: /tmp/,
+}));
+I just make tempFileDir a string and it solved the problem.
+
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/',
+}));
