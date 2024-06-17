@@ -9,7 +9,7 @@ const ViewTaskModel = ({handleViewModelClose,showViewModel,id}) => {
   const [task,setTask] = useState([]);
   useEffect(()=>{
     const singleTask = async()=>{
-      await axios.get(`http://localhost:4000/api/v1/task/single/${id}`,{withCredentials:true}).then(res=>{
+      await axios.get(`http://localhost:2000/api/v1/task/single/${id}`,{withCredentials:true}).then(res=>{
         setTask(res.data.task);
       }).catch(error=>{
         console.log(error.response.data.message);

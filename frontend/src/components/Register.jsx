@@ -30,7 +30,7 @@ const Register = ({setIsAuthenticated,isAuthenticated}) => {
     formdata.append("password",password);
     formdata.append("avatar",avatar);
     
-    await axios.post("http://localhost:4000/api/v1/user/register",formdata,{
+    await axios.post("http://localhost:2000/api/v1/user/register",formdata,{
       withCredentials:true,
       headers:{
         "Content-Type":"multipart/form-data"

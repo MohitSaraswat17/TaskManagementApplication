@@ -13,7 +13,7 @@ const UpdateTaskModel = ({showUpdateModel,handleUpdateModelClose,id,setTasks}) =
 
   useEffect(()=>{
     const singleTask = async()=>{
-      await axios.get(`http://localhost:4000/api/v1/task/single/${id}`,{withCredentials:true}).then(res=>{
+      await axios.get(`http://localhost:2000/api/v1/task/single/${id}`,{withCredentials:true}).then(res=>{
         setTitle(res.data.task.title);
         setDescription(res.data.task.description);
         setStatus(res.data.task.status);
@@ -29,7 +29,7 @@ const UpdateTaskModel = ({showUpdateModel,handleUpdateModelClose,id,setTasks}) =
   },[id]);
 
   const handleUpdate = async()=>{
-    await axios.put(`http://localhost:4000/api/v1/task/update/${id}`,{
+    await axios.put(`http://localhost:2000/api/v1/task/update/${id}`,{
       title,
       description,
       status,
