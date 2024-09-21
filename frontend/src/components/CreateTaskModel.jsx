@@ -10,7 +10,7 @@ const CreateTaskModel = ({showCreateModel,handleCreateModelClose,setTasks}) => {
   const [description,setDescription] = useState("");
 
   const handleCreateTask = async()=>{
-    await axios.post(`http://localhost:2000/api/v1/task/post`,{
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/task/post`,{
       title,
       description,
     },

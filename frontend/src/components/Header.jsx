@@ -20,7 +20,7 @@ function Header({setTasks,tasks,setIsAuthenticated,isAuthenticated,setTaskType})
 
   const fetchTask = async() => { 
     try {
-      const {data} = await axios.get("http://localhost:2000/api/v1/task/mytask",{withCredentials:true});
+      const {data} = await axios.get("${import.meta.env.VITE_BACKEND_URL}/api/v1/task/mytask",{withCredentials:true});
       setAllTasks(data.tasks);
       setTasks(data.tasks);
     } catch (error) {
@@ -31,7 +31,9 @@ function Header({setTasks,tasks,setIsAuthenticated,isAuthenticated,setTaskType})
   
 const HandleLogout = async() => { 
     try {
-      const {data} = await axios.get("http://localhost:2000/api/v1/user/logout",{withCredentials:true});
+      const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/logout`,{withCredentials:true});
+      console.log(import.meta.env.VITE_BACKEND_URL);
+      
       toast.success(data.message);
       setIsAuthenticated(false);
       navigateTo("/login");

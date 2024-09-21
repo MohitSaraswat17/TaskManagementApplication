@@ -17,7 +17,7 @@ const Home = ({isAuthenticated,tasks,setTasks,taskType}) => {
   const [updateTaskId,setUpdateTaskId] = useState("");
 
   const deleteTask = async (id) => { 
-    await axios.delete(`http://localhost:2000/api/v1/task/delete/${id}`,{withCredentials:true})
+    await axios.delete(`${import.meta.env.VITE_VITE_BACKEND_URL}/api/v1/task/delete/${id}`,{withCredentials:true})
     .then((res)=>{
       toast.success(res.data.message);
       setTasks((prevTasks)=>prevTasks.filter((task)=>task._id!==id));

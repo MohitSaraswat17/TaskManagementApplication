@@ -21,7 +21,7 @@ app.use(cors({
 }));
 
 app.use(cookieParser())
-app.use(express.json()); // To parse json format/payload to javascript object we use this.
+app.use(express.json()); // To parse json format/pacd froyload to javascript object we use this.
 app.use(express.urlencoded({extended:true}));
 
 app.use(fileUpload({
